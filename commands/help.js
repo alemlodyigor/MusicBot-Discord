@@ -13,7 +13,10 @@ module.exports = {
             !p [tytuł, url] - dodanie piosenki do odtwarzania\n
             !q - kolejka\n
             !s - pominięcie aktualnej piosenki\n
-            !sall - pominięcie całej kolejki`
+            !sall - pominięcie całej kolejki\n
+            !pause - wstrzymanie odtwarzania piosenek\n
+            !resume - wznowienie odtwarzania piosenki
+            `
         ),
       ],
     });
