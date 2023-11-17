@@ -11,6 +11,7 @@ module.exports = {
     try {
       await queue.skip();
       message.channel.send(`${client.emotes.success} | Pominięto`);
+      queue.setRepeatMode(0);
     } catch (e) {
       message.channel.send(`${client.emotes.error} | Nie ma nic w kolejce!`);
     }
