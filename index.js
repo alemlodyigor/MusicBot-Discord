@@ -22,7 +22,7 @@ client.DisTube = new DisTube(client, {
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.emotes = client.emojis;
+client.emotes = config.emoji;
 
 fs.readdir("./commands/", (err, files) => {
   if (err) return console.log("Could not find any commands!");
@@ -61,7 +61,7 @@ client.on("messageCreate", async (message) => {
   if (!cmd) return;
   if (cmd.inVoiceChannel && !message.member.voice.channel)
     return message.channel.send(
-      `${client.emotes.error} | You must be in a voice channel!`
+      `${client.emotes.error} | Musisz być na kanale głosowym`
     );
 
   try {
@@ -75,8 +75,13 @@ client.on("messageCreate", async (message) => {
 client.DisTube.on("playSong", (queue, song) => {
   try {
     if (queue && queue.textChannel)
-      queue.textChannel.channel.send("NOW PLAYING " + song.name);
-    else console.error("Error: Queue or TextChannel is undefined");
+      queue.textChannel.send(
+        `${client.emotes.play} Akutalnie odtwarzam: ${song.name}\n${song.url}`
+      );
+    else
+      console.error(
+        "Error: Kolejka, TextChannel lub channel nie jest zdefiniowany"
+      );
   } catch (error) {
     console.error("Error: ", error.message);
   }
