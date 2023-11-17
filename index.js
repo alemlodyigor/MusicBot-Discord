@@ -11,6 +11,7 @@ const client = new Discord.Client({
   ],
 });
 const config = require("./config.json");
+const fs = require("fs");
 
 client.DisTube = new DisTube(client, {
   leaveOnStop: false,
@@ -19,29 +20,55 @@ client.DisTube = new DisTube(client, {
   emitAddListWhenCreatingQueue: false,
 });
 
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+client.emotes = client.emojis;
+
+fs.readdir("./commands/", (err, files) => {
+  if (err) return console.log("Could not find any commands!");
+
+  const jsFiles = files.filter((f) => f.split(".").pop() === "js");
+
+  if (jsFiles.length <= 0) return console.log("Could not find any commands!");
+
+  jsFiles.forEach((file) => {
+    const cmd = require(`./commands/${file}`);
+    console.log(`Loaded ${file}`);
+    client.commands.set(cmd.name, cmd);
+    if (cmd.aliases)
+      cmd.aliases.forEach((alias) => client.aliases.set(alias, cmd.name));
+  });
+});
+
 client.on("ready", () => {
   console.log("Bot is now Online!");
 });
 
-client.on("messageCreate", (message) => {
+client.on("messageCreate", async (message) => {
   if (message.author.bot || !message.guild) return;
 
   const prefix = config.prefix;
 
+  if (!message.content.startsWith(prefix)) return;
+
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
 
-  if (!message.content.toLocaleLowerCase().startsWith(prefix)) return;
+  const cmd =
+    client.commands.get(command) ||
+    client.commands.get(client.aliases.get(command));
 
-  if (args.shift().toLowerCase() === "play") {
-    try {
-      client.DisTube.play(message.member.voice.channel, args.join(" "), {
-        member: message.member,
-        textChannel: message.channel,
-        message,
-      });
-    } catch (error) {
-      console.error("Error: ", error.message);
-    }
+  if (!cmd) return;
+  if (cmd.inVoiceChannel && !message.member.voice.channel)
+    return message.channel.send(
+      `${client.emotes.error} | You must be in a voice channel!`
+    );
+
+  try {
+    cmd.run(client, message, args);
+  } catch (e) {
+    console.error(e);
+    message.channel.send(`${client.emotes.error} | Error: \`${e}\``);
   }
 });
 
