@@ -6,7 +6,7 @@ module.exports = {
     const string = args.join(" ");
     if (!string)
       return message.channel.send(
-        `${client.emotes.error} | Please enter a song url or query to search.`
+        `${client.emotes.error} | Podaj link lub tytuł piosenki do odtworzenia!`
       );
     client.DisTube.play(message.member.voice.channel, string, {
       member: message.member,

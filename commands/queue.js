@@ -5,7 +5,7 @@ module.exports = {
     const queue = client.DisTube.getQueue(message);
     if (!queue)
       return message.channel.send(
-        `${client.emotes.error} | There is nothing playing!`
+        `${client.emotes.error} | Nic nie odtwarzam!`
       );
     const q = queue.songs
       .map(

@@ -12,10 +12,9 @@ module.exports = {
             !np - teraz odtwarzane\n
             !p [tytuł, url] - dodanie piosenki do odtwarzania\n
             !q - kolejka\n
-            !s - pominięcie aktualnej piosenki\n`
-          // client.commands.map((cmd) => `\`${cmd.name}\``).join(", ")
+            !s - pominięcie aktualnej piosenki\n
+            !sall - pominięcie całej kolejki`
         ),
-        //   .setColor("BLUE"),
       ],
     });
   },

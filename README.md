@@ -7,6 +7,7 @@ Bot can play song from YouTube, SoundCloud and Spotify.
 Loop <br>
 Queue <br>
 Skip <br>
+SkipAll <br>
 Now Playing <br>
 
 # Configuration
