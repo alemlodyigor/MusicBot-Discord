@@ -9,6 +9,8 @@ Queue <br>
 Skip <br>
 SkipAll <br>
 Now Playing <br>
+Pause <br>
+Resume <br>
 
 # Configuration
 
