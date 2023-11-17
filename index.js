@@ -82,6 +82,22 @@ client.on("messageCreate", async (message) => {
   }
 });
 
+client.DisTube.on("addSong", (queue, song) => {
+  queue.textChannel.send(
+    `${client.emotes.success} | Dodano ${song.name} - \`${song.formattedDuration}\` do kolejki!`
+  );
+});
+
+client.DisTube.on("searchNoResult", (message, query) =>
+  message.channel.send(
+    `${client.emotes.error} | Brak wyników dla \`${query}\`!`
+  )
+);
+
+client.DisTube.on("empty", (channel) =>
+  channel.send("Kanał głosowy jest pusty. Wychodzę...")
+);
+
 client.DisTube.on("playSong", (queue, song) => {
   try {
     if (queue && queue.textChannel)
