@@ -12,10 +12,14 @@ module.exports = {
 
     if (queue.paused) {
       queue.resume();
-      return message.channel.send("Odtwarzanie piosenki");
+      return message.channel.send(
+        `${client.emotes.play} | Odtwarzanie piosenki`
+      );
     }
 
     await queue.pause();
-    message.channel.send("Wstrzymano odtwarzanie piosenki");
+    message.channel.send(
+      `${client.emotes.stop} | Wstrzymano odtwarzanie piosenki`
+    );
   },
 };
