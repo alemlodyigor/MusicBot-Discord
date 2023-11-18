@@ -8,14 +8,14 @@ module.exports = {
       embeds: [
         new Discord.EmbedBuilder().setTitle("Komendy").setDescription(
           `!h - komendy\n
-            !l - pętla\n
+            !l - włączenie / wyłączenie zapętlenia aktualnej piosenki\n
             !np - teraz odtwarzane\n
             !p [tytuł, url] - dodanie piosenki do odtwarzania\n
             !q - kolejka\n
             !s - pominięcie aktualnej piosenki\n
             !sall - pominięcie całej kolejki\n
-            !pause - wstrzymanie odtwarzania piosenek\n
-            !resume - wznowienie odtwarzania piosenki
+            !pause - wstrzymanie / wznowienie odtwarzania piosenek\n
+            !unpause - wznowienie odtwarzania piosenki
             `
         ),
       ],

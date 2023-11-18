@@ -9,9 +9,14 @@ module.exports = {
         `${client.emotes.error} | Nic nie odtwarzam!`
       );
 
-    let mode = 1;
+    if (queue.repeatMode !== 0) {
+      await queue.setRepeatMode(0);
+      return message.channel.send(
+        `${client.emotes.repeat} | Wyłączono odtwarzanie w pętli`
+      );
+    }
 
-    mode = queue.setRepeatMode(mode);
+    await queue.setRepeatMode(1);
     message.channel.send(
       `${client.emotes.repeat} | Włączono odtwarzanie w pętli`
     );
