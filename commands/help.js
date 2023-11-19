@@ -16,7 +16,8 @@ module.exports = {
             !sall - pominięcie całej kolejki\n
             !pause - wstrzymanie / wznowienie odtwarzania piosenek\n
             !unpause - wznowienie odtwarzania piosenki\n
-            !shuffle - pomieszanie utworów w kolejce
+            !shuffle - pomieszanie utworów w kolejce\n
+            !v - ustawienie głośności bota
             `
         ),
       ],

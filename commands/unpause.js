@@ -13,7 +13,7 @@ module.exports = {
     if (queue.paused) {
       queue.resume();
       return message.channel.send(
-        `${client.emotes.stop} | Wznowiono odtwarzanie piosenki`
+        `${client.emotes.play} | Wznowiono odtwarzanie piosenki`
       );
     } else
       message.channel.send(

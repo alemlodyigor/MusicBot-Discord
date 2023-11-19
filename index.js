@@ -21,6 +21,7 @@ client.DisTube = new DisTube(client, {
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
+  youtubeCookie: JSON.parse(fs.readFileSync("cookies.json")),
   plugins: [
     new SpotifyPlugin({
       emitEventsAfterFetching: true,

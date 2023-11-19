@@ -9,6 +9,6 @@ module.exports = {
       return message.channel.send(`${client.emotes.error} | Nic nie odtwarzam`);
 
     queue.shuffle();
-    message.channel.send("Pomieszano utwory w kolejce");
+    message.channel.send(`${client.emotes.shuffle} | Pomieszano utwory w kolejce`);
   },
 };
