@@ -9,6 +9,11 @@ module.exports = {
         `${client.emotes.error} | Nie ma nic w kolejce!`
       );
     try {
+      if (queue.songs.length === 1) {
+        await queue.stop();
+        message.channel.send(`${client.emotes.success} | Pominięto, dodaj piosenkę do kolejki!`);
+        return;
+      }
       await queue.skip();
       message.channel.send(`${client.emotes.success} | Pominięto`);
       queue.setRepeatMode(0);

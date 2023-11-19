@@ -89,6 +89,14 @@ client.DisTube.on("addSong", (queue, song) => {
   );
 });
 
+client.DisTube.on("addList", (queue, playlist) => {
+  queue.textChannel.send(
+    `${client.emotes.success} | Dodano playlistę \`${playlist.name}\` (${
+      playlist.songs.length
+    } songs) do kolejki\n${status(queue)}`
+  );
+});
+
 client.DisTube.on("searchNoResult", (message, query) =>
   message.channel.send(
     `${client.emotes.error} | Brak wyników dla \`${query}\`!`
@@ -113,5 +121,20 @@ client.DisTube.on("playSong", (queue, song) => {
     console.error("Error: ", error.message);
   }
 });
+
+client.DisTube.on("error", (channel, e) => {
+  if (channel)
+    channel.send(
+      `${client.emotes.error} | Wystąpił błąd: ${e
+        .toString()
+        .replace("PlayingError:", "")
+        .slice(0, 1974)}`
+    );
+  else console.error(e);
+});
+
+client.DisTube.on("finish", (queue) =>
+  queue.textChannel.send("Nie ma więcej piosenek w kolejce!")
+);
 
 client.login(process.env.TOKEN);
