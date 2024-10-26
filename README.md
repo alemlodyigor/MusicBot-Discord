@@ -74,4 +74,3 @@ pm2 status
 
 Based on <a href="https://github.com/distubejs/example/tree/v4">DisTube Example bot </a><br>
 If you enjoyed my work leave a star :D <br>
-You can leave a feedback by mail me: kontakt@alemlodyigor.pl
